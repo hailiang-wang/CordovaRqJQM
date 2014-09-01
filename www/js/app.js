@@ -1,6 +1,18 @@
+requirejs.config({
+    //By default load any module IDs from js/lib
+    baseUrl: 'js/lib',
+    //except, if the module ID starts with "app",
+    //load it from the js/app directory. paths
+    //config is relative to the baseUrl, and
+    //never includes a ".js" extension since
+    //the paths config could be for a directory.
+    paths: {
+        app: '../app'
+    }
+});
 
-requirejs(['cordova.js'],
-function   () {
+requirejs(['cordova.js', 'app/a'],
+function   (a, b) {
 // start of require
 
 // cordova is now available globally
@@ -33,8 +45,8 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
+        alert(JSON.stringify(b));
     }
 };
           
